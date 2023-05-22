@@ -1,3 +1,6 @@
+//! Advent Input
+//!
+//! `advent_input` provides a function to easily retrieve Advent of Code input for a given date.
 extern crate reqwest;
 use std::{io::Read, path::Path, fs, env, error::Error};
 
@@ -27,9 +30,18 @@ impl Year {
     }
 }
 
-pub fn get_input(y: u16, d: u8, path: &str) -> Result<(), Box<dyn Error>> {
-    let y = Year::new(y);
-    let d = Day::new(d);
+/// Gets input of specified year and day, writing to given path.
+/// Reads from environment variable for authentication. Set ADVENT_COOKIE to your session value in
+/// your environment variables to configure.
+///
+/// # Examples
+///
+/// ```
+/// advent_input::get_input(2017, 16, "sixteen.txt").unwrap(); // Writes input for Day 16, 2017 to sixteen.txt
+/// ```
+pub fn get_input(year: u16, day: u8, path: &str) -> Result<(), Box<dyn Error>> {
+    let y = Year::new(year);
+    let d = Day::new(day);
 
     let path = Path::new(path);
     if path.exists() {

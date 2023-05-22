@@ -1,5 +1,7 @@
 [package]
 name = "advent_input"
+license = "MIT"
+description = "Gets input for Advent of Code."
 version = "0.1.0"
 edition = "2021"
 
